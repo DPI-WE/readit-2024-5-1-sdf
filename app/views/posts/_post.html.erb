@@ -9,4 +9,17 @@
     <%= post.body %>
   </p>
 
+  <p>
+    <strong>Published At:</strong>
+    <%= post.published_at %>
+  </p>
+
+  <p>
+    <% if post.published? %>
+      <strong>Published</strong>
+    <% else %>
+      <strong>Unpublished</strong>
+    <% end %>
+  </p>
+
 </div>
