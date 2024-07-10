@@ -1,27 +1,45 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, only: %i[ new create edit update destroy ]
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.published
+    @breadcrumbs = [
+      { content: "Posts", href: posts_path },
+      { content: "Page #{params[:page] || 1}"}
+    ]
+    @posts = Post.includes(:author).published.page(params[:page]).per(10)
   end
 
   # GET /posts/1 or /posts/1.json
   def show
+    @breadcrumbs = [
+      { content: "Posts", href: posts_path },
+      { content: @post.to_s, href: post_path(@post) }
+    ]
   end
 
   # GET /posts/new
   def new
+    @breadcrumbs = [
+      { content: "Posts", href: posts_path },
+      { content: "New" }
+    ]
     @post = Post.new
   end
 
   # GET /posts/1/edit
   def edit
+    @breadcrumbs = [
+      { content: "Posts", href: posts_path },
+      { content: @post.to_s, href: post_path(@post) },
+      { content: "Edit" }
+    ]
   end
 
   # POST /posts or /posts.json
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.new(post_params)
 
     respond_to do |format|
       if @post.save

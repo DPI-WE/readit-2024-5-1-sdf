@@ -31,4 +31,8 @@ class Post < ApplicationRecord
   def unpublished?
     self.published_at.nil? || self.published_at > Time.current
   end
+
+  def to_s
+    "#{id}-#{title}"
+  end
 end

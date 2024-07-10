@@ -8,10 +8,22 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <%= render "shared/cdn_links" %>
   </head>
 
   <body>
-    <%= render "shared/flash" %>
-    <%= yield %>
+    <div class="mb-2">
+      <%= render "shared/nav" %>
+    </div>
+    <div class="mb-2">
+      <%= render "shared/flash" %>
+    </div>
+    <div class="container">
+      <%= render "shared/breadcrumbs" %>
+    </div>
+    <div class="container my-5">
+      <%= yield %>
+    </div>
   </body>
 </html>
