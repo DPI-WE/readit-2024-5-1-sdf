@@ -1,5 +1,7 @@
 <h1>Posts</h1>
 
+<%= link_to "New post", new_post_path %>
+
 <div id="posts">
   <% @posts.each do |post| %>
     <%= render post %>
@@ -9,4 +11,6 @@
   <% end %>
 </div>
 
-<%= link_to "New post", new_post_path %>
+<div class="d-flex justify-content-center">
+  <%= paginate @posts %>
+</div>
