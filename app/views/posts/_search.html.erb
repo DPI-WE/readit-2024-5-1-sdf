@@ -1,0 +1,9 @@
+<%= search_form_for q do |f| %>
+  <div class="input-group">
+    <%= f.search_field :title_or_body_cont, placeholder: "Search by title or body", class: "form-control" %>
+
+    <button class="btn btn-primary" type="submit">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+  </div>
+<% end %>

@@ -8,7 +8,8 @@ class PostsController < ApplicationController
       { content: "Posts", href: posts_path },
       { content: "Page #{params[:page] || 1}"}
     ]
-    @posts = Post.includes(:author).published.page(params[:page]).per(10)
+    @q = Post.includes(:author).published.page(params[:page]).per(10).ransack(params[:q])
+    @posts = @q.result
   end
 
   # GET /posts/1 or /posts/1.json
