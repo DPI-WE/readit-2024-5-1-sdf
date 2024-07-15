@@ -2,6 +2,19 @@
 
 <%= link_to "New post", new_post_path %>
 
+<%= search_form_for @q do |f| %>
+  <p>Narrow results:</p>
+
+  <div>
+    <%= f.label :title_or_body_cont, "Title or body containing" %>
+    <%= f.text_field :title_or_body_cont, placeholder: "Enter a few characters" %>
+  </div>
+
+  <%= f.submit :class => "btn btn-primary btn-block" %>
+  
+  <%= link_to 'Clear filters', posts_path %>
+<% end %>
+
 <div id="posts">
   <% @posts.each do |post| %>
     <%= render post %>
