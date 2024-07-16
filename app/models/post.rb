@@ -22,6 +22,7 @@ class Post < ApplicationRecord
   include Publishable, Ransackable
 
   belongs_to :author, class_name: "User"
+  has_many :comments, as: :commentable
 
   def to_s
     "#{id}-#{title}"

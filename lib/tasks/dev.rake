@@ -15,7 +15,8 @@ unless Rails.env.production?
     task sample_data: [
       :environment,
       "dev:sample_users",
-      "dev:sample_posts"
+      "dev:sample_posts",
+      "dev:sample_comments"
     ]
 
     desc "Add sample users"
@@ -39,6 +40,19 @@ unless Rails.env.production?
           published_at: i.even? ? Time.current : nil,
           author: User.all.sample
         )
+      end
+    end
+
+    desc "Add sample comments"
+    task sample_comments: :environment do
+      puts "Creating comments for each post"
+      Post.all.each do |post|
+        rand(1..5).times do |i|
+          post.comments.create(
+            body: Faker::Hacker.say_something_smart,
+            author: User.all.sample
+          )
+        end
       end
     end
 
