@@ -4,3 +4,11 @@
   <%= link_to "Edit this post", edit_post_path(@post) %> 
   <%= button_to "Destroy this post", @post, method: :delete %>
 </div>
+
+<div class="my-2">
+  <%= render "comments/list-group", comments: @post.comments.default_order %>
+</div>
+
+<div class="my-2">
+  <%= render "comments/form", comment: Comment.new(commentable_id: "9", commentable_type: "Post") %>
+</div>
