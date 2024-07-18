@@ -5,5 +5,5 @@
 </div>
 
 <div class="my-2">
-  <%= render "comments/form", comment: Comment.new(commentable_id: "9", commentable_type: "Post") %>
+  <%= render "comments/form", comment: @post.comments.new %>
 </div>
