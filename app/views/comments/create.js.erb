@@ -1,0 +1,9 @@
+var added_comment = $("<%= j(render 'comments/list-group-item', comment: @comment) %>");
+
+added_comment.hide();
+
+$("#comment-list-group").append(added_comment);
+
+$("#new_comment #comment_body").val("");
+
+added_comment.slideDown();
