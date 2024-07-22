@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, only: %i[ new create edit update destroy ]
+  after_action { authorize(@post || Post) }
 
   # GET /posts or /posts.json
   def index
@@ -8,7 +9,7 @@ class PostsController < ApplicationController
       { content: "Posts", href: posts_path },
       { content: "Page #{params[:page] || 1}"}
     ]
-    @q = Post.includes(:author).published.page(params[:page]).per(10).ransack(params[:q])
+    @q = policy_scope(Post).includes(:author).published.page(params[:page]).per(10).ransack(params[:q])
     @posts = @q.result
   end
 
@@ -79,7 +80,7 @@ class PostsController < ApplicationController
   private
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = policy_scope(Post).find(params[:id])
   end
 
   def post_params

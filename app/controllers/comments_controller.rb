@@ -1,9 +1,10 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[ show edit update destroy ]
+  after_action { authorize(@comment || Comment) }
 
   # GET /comments or /comments.json
   def index
-    @comments = Comment.all
+    @comments = policy_scope(Comment).all
   end
 
   # GET /comments/1 or /comments/1.json
@@ -12,7 +13,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
-    @comment = Comment.new
+    @comment = policy_scope(Comment).new
   end
 
   # GET /comments/1/edit
@@ -21,7 +22,7 @@ class CommentsController < ApplicationController
 
   # POST /comments or /comments.json
   def create
-    @comment = current_user.comments.new(comment_params)
+    @comment = policy_scope(current_user.comments).new(comment_params)
 
     respond_to do |format|
       if @comment.save
@@ -39,7 +40,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to comment_url(@comment), notice: "Comment was successfully updated." }
+        format.html { redirect_to @comment.commentable, notice: "Comment was successfully updated." }
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -61,7 +62,7 @@ class CommentsController < ApplicationController
   private
 
   def set_comment
-    @comment = Comment.find(params[:id])
+    @comment = policy_scope(Comment).find(params[:id])
   end
 
   def comment_params
