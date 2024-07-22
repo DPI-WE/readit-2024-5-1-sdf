@@ -2,11 +2,15 @@
   <div class="card-header d-flex justify-content-between align-items-center">
     <h5><%= post.title %></h5>
     <div class="d-flex align-items-center">
-      <%= link_to edit_post_path(post), class: "me-2" do %>
-        <i class="fa-solid fa-pen-to-square fa-xl"></i>
+      <% if policy(post).edit? %>
+        <%= link_to edit_post_path(post), class: "me-2" do %>
+          <i class="fa-solid fa-pen-to-square fa-xl"></i>
+        <% end %>
       <% end %>
-      <%= button_to post, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-link" do %>
-        <i class="fa-solid fa-trash fa-xl text-danger"></i>
+      <% if policy(post).destroy? %>
+        <%= button_to post, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-link" do %>
+          <i class="fa-solid fa-trash fa-xl text-danger"></i>
+        <% end %>
       <% end %>
     </div>
   </div>

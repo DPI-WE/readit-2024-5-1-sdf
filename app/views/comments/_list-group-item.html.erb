@@ -4,4 +4,16 @@
     <small><%= time_ago_in_words(comment.created_at) %> ago</small>
   </div>
   <p class="mb-1"><%= comment.body %></p>
+    <div class="d-flex align-items-center justify-content-end">
+    <% if policy(comment).edit? %>
+      <%= link_to edit_comment_path(comment), class: "me-2" do %>
+        <i class="fa-solid fa-pen-to-square"></i>
+      <% end %>
+    <% end %>
+    <% if policy(comment).destroy? %>
+      <%= button_to comment, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-link" do %>
+        <i class="fa-solid fa-trash text-danger"></i>
+      <% end %>
+    <% end %>
+  </div>
 </div>
