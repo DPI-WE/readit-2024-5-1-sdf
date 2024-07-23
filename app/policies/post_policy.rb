@@ -26,6 +26,10 @@ class PostPolicy < ApplicationPolicy
     post.author == user
   end
 
+  def export?
+    true
+  end
+
   class Scope < ApplicationPolicy::Scope
     def resolve
       scope.all
