@@ -77,6 +77,14 @@ class PostsController < ApplicationController
     end
   end
 
+  def export
+    respond_to do |format|
+      format.csv do
+        send_data(policy_scope(current_user.posts).to_csv, filename: "my_posts.csv")
+      end
+    end
+  end
+
   private
 
   def set_post
