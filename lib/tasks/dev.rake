@@ -23,10 +23,7 @@ unless Rails.env.production?
     task sample_users: :environment do
       puts "Creating 100 users"
       100.times do |i|
-        User.create(
-          email: "#{Faker::Name.first_name.downcase}@example.com",
-          password: "password"
-        )
+        User.insert({ email: "#{Faker::Name.first_name.downcase}@example.com" })
       end
     end
 
@@ -34,12 +31,12 @@ unless Rails.env.production?
     task sample_posts: :environment do
       puts "Creating 100 posts"
       100.times do |i|
-        Post.create(
+        Post.insert({
           title: Faker::Movies::PrincessBride.character,
           body: Faker::Movies::PrincessBride.quote,
           published_at: i.even? ? Time.current : nil,
-          author: User.all.sample
-        )
+          author_id: User.all.sample.id
+        })
       end
     end
 
@@ -48,10 +45,10 @@ unless Rails.env.production?
       puts "Creating comments for each post"
       Post.all.each do |post|
         rand(1..5).times do |i|
-          post.comments.create(
+          post.comments.insert({
             body: Faker::Hacker.say_something_smart,
-            author: User.all.sample
-          )
+            author_id: User.all.sample.id
+          })
         end
       end
     end
