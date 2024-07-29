@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  include Punditable
+  include Deviseable, Punditable
 
   skip_forgery_protection
 end

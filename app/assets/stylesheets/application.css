@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+.max-width-2 {
+  max-width: 2em;
+}
