@@ -18,11 +18,7 @@
     <blockquote class="blockquote mb-0">
       <p><%= post.body %></p>
       <footer class="blockquote-footer my-2">
-        <% if post.author.avatar.attached? %>
-          <%= image_tag post.author.avatar, class: "rounded-circle max-width-2" %>
-        <% else %>
-          <%= image_tag "default_avatar", class: "rounded-circle max-width-2" %>
-        <% end %>
+        <%= image_tag post.author.avatar_or_default, class: "rounded-circle max-width-2" %>
         <span class="ms-2"><%= post.author.email %></span>
       </footer>
     </blockquote>
