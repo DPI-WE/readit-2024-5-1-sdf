@@ -27,7 +27,7 @@ class PostsController < ApplicationController
       { content: "Posts", href: posts_path },
       { content: "New" }
     ]
-    @post = Post.new
+    @post = policy_scope(Post).new
   end
 
   # GET /posts/1/edit
@@ -41,7 +41,7 @@ class PostsController < ApplicationController
 
   # POST /posts or /posts.json
   def create
-    @post = current_user.posts.new(post_params)
+    @post = policy_scope(current_user.posts).new(post_params)
 
     respond_to do |format|
       if @post.save

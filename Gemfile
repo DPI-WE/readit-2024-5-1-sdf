@@ -5,6 +5,7 @@ ruby "3.2.1"
 
 gem "appdev_support"
 gem "awesome_print"
+gem "aws-sdk-s3", require: false
 gem "bootsnap", require: false
 gem "devise"
 gem "dotenv-rails"
