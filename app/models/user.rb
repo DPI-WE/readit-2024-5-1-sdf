@@ -21,6 +21,8 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
+  include Avatarable
+
   devise :confirmable,
          :database_authenticatable,
          :registerable,
@@ -30,8 +32,6 @@ class User < ApplicationRecord
 
   has_many :posts, foreign_key: :author_id
   has_many :comments, foreign_key: :author_id
-
-  has_one_attached :avatar
 
   after_create_commit { UserMailer.with(user: self).welcome.deliver_now }
 end
