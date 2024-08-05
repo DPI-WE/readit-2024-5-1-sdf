@@ -19,7 +19,7 @@
 #  fk_rails_...  (author_id => users.id)
 #
 class Post < ApplicationRecord
-  include Csvable, Publishable, Ransackable
+  include ContentModeratable, Csvable, Publishable, Ransackable
 
   belongs_to :author, class_name: "User"
   has_many :comments, as: :commentable
