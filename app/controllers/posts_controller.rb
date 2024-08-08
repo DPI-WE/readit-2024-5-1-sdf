@@ -15,6 +15,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
+    set_meta_tags @post.to_meta_tags
     @breadcrumbs = [
       { content: "Posts", href: posts_path },
       { content: @post.to_s, href: post_path(@post) }
