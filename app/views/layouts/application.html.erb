@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%= display_meta_tags(MetaTagService.defaults) %>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-
     <%= render "shared/cdn_links" %>
+    <%= render "shared/meta_tags" %>
   </head>
 
   <body>
