@@ -2,16 +2,18 @@ module Post::MetaTaggable
   extend ActiveSupport::Concern
 
   def to_meta_tags
-    MetaTagService.defaults.deep_merge({
+    {
+      site: "Readit",
       title: title,
-      description: body.truncate_words(20),
       image: image_path,
+      description: body.truncate_words(20),
       og: {
         title: title,
         image: image_path,
         description: body.truncate_words(20),
+        site_name: "Readit",
       }
-    })
+    }
   end
 
   def image_path
