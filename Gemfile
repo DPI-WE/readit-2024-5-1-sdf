@@ -6,6 +6,7 @@ ruby "3.2.1"
 gem "appdev_support"
 gem "awesome_print"
 gem "aws-sdk-s3", require: false
+gem "blazer"
 gem "bootsnap", require: false
 gem "devise"
 gem "dotenv-rails"
@@ -21,8 +22,10 @@ gem "pg", "~> 1.1"
 gem "puma"
 gem "pundit", "~> 2.3"
 gem "rails", "~> 7.1.3", ">= 7.1.3.2"
+gem 'rails_admin', '~> 3.1', '>= 3.1.4'
 gem "ransack"
 gem "redis", "~> 4.0"
+gem "sassc-rails" # included with rails admin generator, do we need it?
 gem "sprockets-rails"
 gem "sqlite3", "~> 1.4"
 gem "stimulus-rails"

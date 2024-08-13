@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  # TODO: only allow admin users
-  mount GoodJob::Engine => 'good_job'
+  draw(:admin)
 
   devise_for :users
   resources :comments
