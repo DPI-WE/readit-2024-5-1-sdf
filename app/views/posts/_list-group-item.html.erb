@@ -1,12 +1,16 @@
 <!-- post -->
 
-<%= link_to post_path(post), class: "list-group-item list-group-item-action d-flex align-items-center justify-content-between" do %>
-  <div>
-    <h5><%= post.title %></h5>
-    <%= post.body.truncate_words(15) %>
-  </div>
+<%= link_to post_path(post), class: "list-group-item list-group-item-action d-flex align-items-center" do %>
 
   <div>
+    <%= image_tag post.author.avatar_or_default, class: "rounded-circle max-width-3 me-3" %>
+  </div>
+  <div>
+    <h5><%= post.title %></h5>
+    <p><%= post.body.truncate_words(15) %></p>
+  </div>
+
+  <div class="ms-auto">
     <i class="fa-solid fa-chevron-right fa-xl"></i>
   </div>
 <% end %>

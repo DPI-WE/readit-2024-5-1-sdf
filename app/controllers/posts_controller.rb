@@ -9,7 +9,7 @@ class PostsController < ApplicationController
       { content: "Posts", href: posts_path },
       { content: "Page #{params[:page] || 1}"}
     ]
-    @q = policy_scope(Post).includes(:author).published.page(params[:page]).per(10).ransack(params[:q])
+    @q = policy_scope(Post).includes(author: :avatar_attachment).published.page(params[:page]).per(10).ransack(params[:q])
     @posts = @q.result
   end
 

@@ -32,6 +32,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 group :development do
   gem "brakeman", require: false
+  gem "bullet"
   gem "annotate"
   gem "better_errors"
   gem "binding_of_caller"
