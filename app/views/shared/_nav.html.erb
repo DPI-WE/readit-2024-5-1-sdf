@@ -7,6 +7,18 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ms-auto">
         <% if user_signed_in? %>
+          <% if current_user.admin? %>
+            <li class="nav-item dropdown">
+              <a class="nav-link text-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Admin
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Admin", rails_admin_path, class: "dropdown-item" %></li>
+                <li><%= link_to "Blazer", blazer_path, class: "dropdown-item" %></li>
+                <li><%= link_to "Good Job", good_job_path, class: "dropdown-item" %></li>
+              </ul>
+            </li>
+          <% end %>
           <li class="nav-item">
             <%= link_to 'Dashboard', dashboard_index_path, class: "nav-link text-light" %>
           </li>
